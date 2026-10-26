@@ -1,0 +1,11 @@
+## Interface: 120105
+## Title: DuoSupport
+## Notes: Personal Midnight Retail duo companion
+## Author: Duo
+## Version: 0.1.0
+## SavedVariables: DuoSupportDB
+## AllowLoadGameType: mainline
+
+Common.lua
+Classes.lua
+Main.lua
