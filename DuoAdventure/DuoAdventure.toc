@@ -1,0 +1,14 @@
+## Interface: 120105
+## Title: DuoAdventure
+## Notes: Personal Midnight Retail quest planning and addon progress sharing, separate from WoW Party Sync
+## Author: Duo
+## Version: 0.3.0
+## SavedVariables: DuoAdventureDB
+## AllowLoadGameType: mainline
+## OptionalDeps: DuoSocial
+
+Common.lua
+Planner.lua
+Native.lua
+Sync.lua
+Main.lua

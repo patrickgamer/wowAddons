@@ -1,0 +1,9 @@
+WTF/
+**/SavedVariables/
+*.log
+*.bak
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+tools/local/
