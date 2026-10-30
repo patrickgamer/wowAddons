@@ -97,3 +97,7 @@ lua5.1 tools/verify.lua
 The execution-policy override applies only to that helper process. Elsewhere prefer `lua5.1 tools/verify.lua`; a DLL is an optional local verification tool, never an addon dependency. Mock checks cannot reproduce taint or secure WoW execution. See [public-repository privacy guidance](docs/PRIVACY.md) before committing examples or local setup information.
 
 For cross-platform release checks: run the structural/Lua checks on both systems; enable each addon alone, then the suite; follow each manual checklist at native resolution and adjusted UI scale; test freshly created Evoker and Demon Hunter characters at their actual first playable levels, then learned/talent changes and higher-level group play. Verify reload persistence, filename case, available fonts and modifier bindings. Record actual build/OS/results in `docs/VERIFICATION.md`. macOS validation is outstanding.
+
+## Developer testing
+
+`devkit/` holds a developer-only test recorder (not an addon of the suite); see `devkit/README.md`, `docs/TESTING.md` and the guided `docs/run-sheets/`. Development tools (Lua 5.1, luacheck, lua-language-server) are never required to play.

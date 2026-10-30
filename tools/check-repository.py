@@ -69,9 +69,23 @@ for name in names:
             assert 'SendAddonMessage(PREFIX, packet.text, "PARTY")' in code, path
     entries = [p.name.lower() for p in folder.iterdir()]
     assert len(entries) == len(set(entries)), folder
+# Developer-only recorder: outside the five runtime addons and outside WoW's AddOns scan, but held to the same
+# rules. It may read Party Sync (it is the reader here) and nothing else, and never sends or acts.
+kit = root / 'devkit' / 'DuoTestKit'
+kit_toc = (kit / 'DuoTestKit.toc').read_text(encoding='utf-8')
+assert '## SavedVariables: DuoTestKitDB' in kit_toc and '## Interface: 120105' in kit_toc, kit
+for line in kit_toc.splitlines():
+    if line and not line.startswith('#'):
+        assert (kit / line).is_file(), (kit, line)
+for path in kit.glob('*.lua'):
+    code = path.read_text(encoding='utf-8')
+    problems = native_violations(NATIVE_READER, code)
+    assert not problems, (path, problems)
+    assert not re.search(r'\b(SendAddonMessage|SendChatMessage|InviteUnit|CastSpellByID|TargetUnit|LootSlot)\s*\(', re.sub(r'--[^\n]*', '', code).replace('"SendAddonMessage"', '')), (path, 'kit must never act or send')
+assert (root / 'devkit' / 'README.md').is_file()
 common = [(root / n / 'Common.lua').read_bytes() for n in names]
 assert all(c == common[0] for c in common), 'standalone Common.lua copies differ'
-for folder in [root, *(root / n for n in names), root / 'docs', root / 'tools']:
+for folder in [root, *(root / n for n in names), root / 'docs', root / 'tools', root / 'docs' / 'run-sheets', root / 'devkit', kit]:
     for path in folder.iterdir():
         if path.is_file() and path.suffix in ('.lua', '.toc', '.md', '.py', '.ps1'):
             raw = path.read_bytes()

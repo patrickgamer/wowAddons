@@ -52,6 +52,10 @@ No addon runtime files changed. The Lua mock suite was not rerun for this docume
 
 For the 0.3.0 Party Sync change, the DuoAdventure and sharing sections were rechecked against `DuoAdventure.toc`, `Native.lua`, `Sync.lua`, the `Main.lua` command handler and button registrations. `tidy -errors -quiet docs/index.html` passed. A headless Chromium loaded the page from disk with networking blocked at 1280, 390 and 320 pixel widths, and found no horizontal overflow and no in-page link without a matching anchor. Screenshots of the DuoAdventure and sharing sections were inspected at 1280, 390 and 320 pixels. Online links were not rechecked in that environment. No WoW installation, settings, native Party Sync state or GitHub Pages configuration changed.
 
+## Developer test kit (added after 0.3.0)
+
+`devkit/DuoTestKit`, `docs/run-sheets/`, `docs/TESTING.md`, `tools/check-api.py`, `tools/check-types.py`, `tools/kit-report.lua`, `tools/verify-kit.lua` and `.luacheckrc` add developer-only tooling; no runtime addon changed. Checked on macOS with Python 3.9, Lua 5.1.5 built from lua.org, luacheck 1.2.0 and lua-language-server 3.19.2: `check-repository.py` (now also scans the kit and rejects native Party Sync commands or sending in it), `lua5.1 tools/verify-kit.lua` (real `Kit.lua` and reader against a mocked client, with planted defects), `check-api.py` against Blizzard's 12.1.5.70575 documentation (0 unknown names; `GetGuildRosterInfo` unverified), luacheck on addons and kit (one pre-existing shadowing warning in `DuoAdventure/Sync.lua`). `check-types.py` runs but is noisy. No game client was installed or run; the kit has never loaded in WoW, and whether addons may call `Screenshot()` is unverified.
+
 ## Record future manual results here
 
 For each run record: date, OS, full GetBuildInfo tuple, addons enabled, fresh/existing settings, context (starting character/solo/group/guild/open-world/restricted instance/two-client sync), test steps, result and any Lua/taint errors. Do not paste account identifiers, private notes or WTF data into tracked reports. See all five addon READMEs for detailed outstanding cases.
