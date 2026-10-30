@@ -1,0 +1,9 @@
+## Interface: 120105
+## Title: DuoTestKit (developer only)
+## Notes: Read-only test recorder for the Duo addons. Records versions, read-only Party Sync state, packet counts and step results. Never acts, never stores names.
+## Author: Duo
+## Version: 0.1.0
+## SavedVariables: DuoTestKitDB
+## AllowLoadGameType: mainline
+
+Kit.lua
